@@ -10,13 +10,13 @@ services:
       - currency-network
     depends_on:
       - namig-server
-      - rabbitmq
+      #- rabbitmq
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
-      SPRING_RABBITMQ_HOST: rabbitmq
-      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      #RABBIT_URI: amqp://guest:guest@rabbitmq:15672
+      #SPRING_RABBITMQ_HOST: rabbitmq
+      #SPRING_ZIPKIN_SENDER_TYPE: rabbit
       
   currency-converse:
     image: begemot1987/mmv2-currency-conversion-service:latest
@@ -27,13 +27,13 @@ services:
       - currency-network
     depends_on:
       - namig-server
-      - rabbitmq
+      #- rabbitmq
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
-      SPRING_RABBITMQ_HOST: rabbitmq
-      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      #RABBIT_URI: amqp://guest:guest@rabbitmq:15672
+      #SPRING_RABBITMQ_HOST: rabbitmq
+      #SPRING_ZIPKIN_SENDER_TYPE: rabbit
           
   api-gateway:
     image: begemot1987/mmv2-api-gateway:latest
@@ -44,13 +44,13 @@ services:
       - currency-network
     depends_on:
       - namig-server
-      - rabbitmq
+      #- rabbitmq
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka          
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
-      SPRING_RABBITMQ_HOST: rabbitmq
-      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      #RABBIT_URI: amqp://guest:guest@rabbitmq:15672
+      #SPRING_RABBITMQ_HOST: rabbitmq
+      #SPRING_ZIPKIN_SENDER_TYPE: rabbit
   
   zipkin-server:
     image: openzipkin/zipkin
@@ -59,10 +59,10 @@ services:
       - "9411:9411"
     networks:
       - currency-network
-    environment:
-      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
-    depends_on:
-      - rabbitmq 
+    #environment:
+      #RABBIT_URI: amqp://guest:guest@rabbitmq:15672
+    #depends_on:
+      #- rabbitmq 
           
   naming-server:
     image: begemot1987/mmv2-naming-server:latest
@@ -72,14 +72,14 @@ services:
     networks:
       - currency-network
       
-  rabbitmq:
-    image: rabbitmq:3-management
-    mem_limit: 300m
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - currency-network   
+  #rabbitmq:
+    #image: rabbitmq:3.9.13-management
+    #mem_limit: 300m
+    #ports:
+      #- "5672:5672"
+      #- "15672:15672"
+    #networks:
+      #- currency-network   
 
 networks:
   currency-network:
