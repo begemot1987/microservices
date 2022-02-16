@@ -6,15 +6,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.test.microservices.currencyconvertionservice.bean.CurrencyConversionBean;
 
-//name - from services application.properties file, url - 
+//name - from services application.properties file 
 @FeignClient(name = "currency-exchange-service")
-//@FeignClient(name = "currency-exchange-service")
-//@RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
 	
 	//method like in Exchange service!
 	//add name to @PathVariable! otherwise the proxy been will not be created
 	@GetMapping("currency-exchange/from/{from}/to/{to}")
-	public CurrencyConversionBean getValue(@PathVariable("from") String from, @PathVariable("to") String to);
-
+	public CurrencyConversionBean getValue(@PathVariable("from") String from,
+			@PathVariable("to") String to);
 }

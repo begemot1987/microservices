@@ -1,7 +1,5 @@
 package com.test.micriservices.currencyexchangeservice.controller;
 
-import java.math.BigDecimal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;

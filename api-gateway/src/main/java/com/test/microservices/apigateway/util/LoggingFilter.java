@@ -18,7 +18,4 @@ public class LoggingFilter implements GlobalFilter{
 		logger.info("Path of the request is -> {}", exchange.getRequest().getPath());
 		return chain.filter(exchange);
 	}
-	
-	
-
 }

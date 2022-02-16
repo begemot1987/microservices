@@ -8,5 +8,4 @@ import com.test.micriservices.currencyexchangeservice.been.ExchangeValue;
 @Repository
 public interface ExchangeValueRepository extends JpaRepository<ExchangeValue, Long> {
 	ExchangeValue findByFromAndTo(String from, String to);
-
 }
